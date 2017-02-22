@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ac-api/ac-api.iml" filepath="$PROJECT_DIR$/ac-api/ac-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ac-server/ac-server.iml" filepath="$PROJECT_DIR$/ac-server/ac-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aliyun-oss-api/aliyun-oss-api.iml" filepath="$PROJECT_DIR$/aliyun-oss-api/aliyun-oss-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aliyun-oss-server/aliyun-oss-server.iml" filepath="$PROJECT_DIR$/aliyun-oss-server/aliyun-oss-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aliyun-rocketmq-api/aliyun-rocketmq-api.iml" filepath="$PROJECT_DIR$/aliyun-rocketmq-api/aliyun-rocketmq-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aliyun-rocketmq-server/aliyun-rocketmq-server.iml" filepath="$PROJECT_DIR$/aliyun-rocketmq-server/aliyun-rocketmq-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/billing-api/billing-api.iml" filepath="$PROJECT_DIR$/billing-api/billing-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/billing-server/billing-server.iml" filepath="$PROJECT_DIR$/billing-server/billing-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/email-api/email-api.iml" filepath="$PROJECT_DIR$/email-api/email-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/email-server/email-server.iml" filepath="$PROJECT_DIR$/email-server/email-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent.iml" filepath="$PROJECT_DIR$/parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sms-api/sms-api.iml" filepath="$PROJECT_DIR$/sms-api/sms-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sms-server/sms-server.iml" filepath="$PROJECT_DIR$/sms-server/sms-server.iml" />
+    </modules>
+  </component>
+</project>

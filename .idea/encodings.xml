@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ac-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ac-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aliyun-oss-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aliyun-oss-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aliyun-rocketmq-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aliyun-rocketmq-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/billing-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/billing-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/email-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/email-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sms-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sms-server" charset="UTF-8" />
+  </component>
+</project>
