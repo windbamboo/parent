@@ -1,4 +1,4 @@
-package com.weituitu.ac.bo;
+package com.weituitu.ac.api;
 
 /**
  * @描述:
@@ -7,4 +7,6 @@ package com.weituitu.ac.bo;
  * @版本:v1.0
  */
 public interface AcService {
+
+
 }
