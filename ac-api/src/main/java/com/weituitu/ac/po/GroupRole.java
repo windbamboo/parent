@@ -67,4 +67,15 @@ public class GroupRole {
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
+
+    @Override
+    public String toString() {
+        return "GroupRole{" +
+                "id=" + id +
+                ", groupId=" + groupId +
+                ", roleId=" + roleId +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                '}';
+    }
 }

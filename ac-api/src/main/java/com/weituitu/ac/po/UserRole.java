@@ -67,4 +67,15 @@ public class UserRole {
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
+
+    @Override
+    public String toString() {
+        return "UserRole{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", roleId=" + roleId +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                '}';
+    }
 }

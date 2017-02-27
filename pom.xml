@@ -18,6 +18,9 @@
     <module>aliyun-oss-server</module>
     <module>email-api</module>
     <module>email-server</module>
+    <module>wechat</module>
+    <module>pay-wechat</module>
+    <module>pay-alipay</module>
   </modules>
   <packaging>pom</packaging>
 

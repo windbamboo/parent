@@ -52,4 +52,15 @@ public class Power {
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
+
+    @Override
+    public String toString() {
+        return "Power{" +
+                "id=" + id +
+                ", roleId=" + roleId +
+                ", moduleId='" + moduleId + '\'' +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                '}';
+    }
 }

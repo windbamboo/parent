@@ -171,4 +171,23 @@ public class User {
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", tel='" + tel + '\'' +
+                ", status=" + status +
+                ", emailAddr='" + emailAddr + '\'' +
+                ", userPwd='" + userPwd + '\'' +
+                ", loginTime=" + loginTime +
+                ", loginIp='" + loginIp + '\'' +
+                ", appId=" + appId +
+                ", groupId=" + groupId +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                '}';
+    }
 }

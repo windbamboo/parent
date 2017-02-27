@@ -92,4 +92,19 @@ public class Log {
     public void setGmtModify(Date gmtModify) {
         this.gmtModify = gmtModify;
     }
+
+    @Override
+    public String toString() {
+        return "Log{" +
+                "logId=" + logId +
+                ", userId=" + userId +
+                ", moduleId='" + moduleId + '\'' +
+                ", actionType=" + actionType +
+                ", actionTime=" + actionTime +
+                ", actionDetail='" + actionDetail + '\'' +
+                ", userIp='" + userIp + '\'' +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModify=" + gmtModify +
+                '}';
+    }
 }

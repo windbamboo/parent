@@ -145,4 +145,21 @@ public class Module {
     public void setGmtModified(Date gmtModified) {
         this.gmtModified = gmtModified;
     }
+
+    @Override
+    public String toString() {
+        return "Module{" +
+                "moduleId='" + moduleId + '\'' +
+                ", moduleName='" + moduleName + '\'' +
+                ", moduleFather='" + moduleFather + '\'' +
+                ", status=" + status +
+                ", uri='" + uri + '\'' +
+                ", moduleType=" + moduleType +
+                ", appId=" + appId +
+                ", icon='" + icon + '\'' +
+                ", displayMenu=" + displayMenu +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                '}';
+    }
 }
