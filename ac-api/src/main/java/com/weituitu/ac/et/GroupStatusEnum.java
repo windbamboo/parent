@@ -6,7 +6,7 @@ package com.weituitu.ac.et;
  * @创建:2017/2/27-下午11:25
  * @版本:v1.0
  */
-public enum  GroupStatusEnum {
+public enum GroupStatusEnum {
     ACTIVE(1, "active"), EXPIRED(2, "expired");
 
     /**

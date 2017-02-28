@@ -7,7 +7,7 @@ package com.weituitu.ac.et;
  * @版本:v1.0
  */
 public enum ModuleTypeEnum {
-    APP_ROOT((byte) 1, "root"),
+    APP_ROOT((byte) 1, "app_root"),
     URI((byte) 2, "uri"),
     FUNCTION((byte) 3, "function");
 
