@@ -16,6 +16,7 @@
         <module>id-api</module>
         <module>id-server</module>
         <module>platform-core</module>
+        <module>tgb-web</module>
     </modules>
     <packaging>pom</packaging>
 
