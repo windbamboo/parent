@@ -2,25 +2,24 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:motan="http://api.weibo.com/schema/motan" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:apollo="http://www.ctrip.com/schema/apollo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
-   http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+   http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+ http://www.ctrip.com/schema/apollo http://www.ctrip.com/schema/apollo.xsd">
 
-    <bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
-      <property name="locations">
-          <list>
+    <apollo:config/>
 
-          </list>
-      </property>
-    </bean>
+    <apollo:config namespaces="back-end.motan"/>
+
 
     <context:component-scan base-package="com.weituitu.id"/>
     <motan:registry regProtocol="zookeeper" name="zookeeper_registry" connectTimeout="30000"
-                    address="127.0.0.1:2181,127.0.0.1:2181,127.0.0.1:2181"/>
+                    address="${zookeeper.address}"/>
 
     <!-- service implemention bean -->
     <bean id="idService" class="com.weituitu.id.service.IdserviceImpl"/>
     <!-- exporting service by Motan -->
     <motan:service interface="com.weituitu.id.api.IdService" registry="zookeeper_registry" ref="idService"
-                   export="8003"/>
+                   export="${server.port}"/>
 
 </beans>
