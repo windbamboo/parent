@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 开发环境 -->
+    <springProfile name="dev">
+        <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+                <charset class="java.nio.charset.Charset">UTF-8</charset>
+            </encoder>
+        </appender>
+
+        <root level="info">
+            <appender-ref ref="STDOUT"/>
+        </root>
+
+    </springProfile>
+
+    <springProfile name="fat">
+
+        <appender name="FatAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${user.home}/pro/logs/idservice.log</file>
+            <append>true</append>
+            <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+                <fileNamePattern>${user.home}/logs/task-treasure/otherdays/task-treasure_fat.%i.log
+                </fileNamePattern>
+                <minIndex>1</minIndex>
+                <maxIndex>20</maxIndex>
+            </rollingPolicy>
+            <triggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+                <maxFileSize>1024MB</maxFileSize>
+            </triggeringPolicy>
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+                <charset class="java.nio.charset.Charset">UTF-8</charset>
+            </encoder>
+        </appender>
+
+
+        <root level="debug">
+            <appender-ref ref="FatAppender"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="uat">
+
+        <appender name="UatAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${user.home}/pro/logs/idservice.log</file>
+            <append>true</append>
+            <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+                <fileNamePattern>${user.home}/logs/task-treasure/otherdays/task-treasure_uat.%i.log
+                </fileNamePattern>
+                <minIndex>1</minIndex>
+                <maxIndex>20</maxIndex>
+            </rollingPolicy>
+            <triggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+                <maxFileSize>1024MB</maxFileSize>
+            </triggeringPolicy>
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+                <charset class="java.nio.charset.Charset">UTF-8</charset>
+            </encoder>
+        </appender>
+
+
+        <root level="debug">
+            <appender-ref ref="UatAppender"/>
+        </root>
+    </springProfile>
+
+    <springProfile name="pro">
+        <appender name="ProAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${user.home}/pro/logs/idservice.log</file>
+            <append>true</append>
+            <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+                <fileNamePattern>${user.home}/logs/task-treasure/otherdays/task-treasure_pro.%i.log
+                </fileNamePattern>
+                <minIndex>1</minIndex>
+                <maxIndex>20</maxIndex>
+            </rollingPolicy>
+            <triggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+                <maxFileSize>1024MB</maxFileSize>
+            </triggeringPolicy>
+            <encoder>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+                <charset class="java.nio.charset.Charset">UTF-8</charset>
+            </encoder>
+        </appender>
+
+
+        <root level="warn">
+            <appender-ref ref="ProAppender"/>
+        </root>
+
+    </springProfile>
+
+
+</configuration>
