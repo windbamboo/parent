@@ -10,19 +10,17 @@
             </encoder>
         </appender>
 
-        <root level="info">
+        <root level="debug">
             <appender-ref ref="STDOUT"/>
         </root>
-
     </springProfile>
 
     <springProfile name="fat">
-
-        <appender name="DefaultAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>${user.home}/pro/logs/idservice.log</file>
+        <appender name="FatAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${user.home}/logs/task-treasure/task-treasure_fat.log</file>
             <append>true</append>
             <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-                <fileNamePattern>${user.home}/logs/task-treasure/otherdays/idserver_fat.%i.log
+                <fileNamePattern>${user.home}/logs/task-treasure/otherdays/task-treasure_fat.%i.log
                 </fileNamePattern>
                 <minIndex>1</minIndex>
                 <maxIndex>20</maxIndex>
@@ -37,19 +35,17 @@
             </encoder>
         </appender>
 
-
         <root level="debug">
-            <appender-ref ref="DefaultAppender"/>
+            <appender-ref ref="FatAppender"/>
         </root>
     </springProfile>
 
     <springProfile name="uat">
-
-        <appender name="DefaultAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>${user.home}/pro/logs/idservice.log</file>
+        <appender name="UatAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${user.home}/logs/task-treasure/task-treasure_uat.log</file>
             <append>true</append>
             <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-                <fileNamePattern>${user.home}/logs/task-treasure/otherdays/idserver.%i.log
+                <fileNamePattern>${user.home}/logs/task-treasure/otherdays/task-treasure_uat.%i.log
                 </fileNamePattern>
                 <minIndex>1</minIndex>
                 <maxIndex>20</maxIndex>
@@ -64,18 +60,17 @@
             </encoder>
         </appender>
 
-
         <root level="debug">
-            <appender-ref ref="DefaultAppender"/>
+            <appender-ref ref="UatAppender"/>
         </root>
     </springProfile>
 
     <springProfile name="pro">
-        <appender name="DefaultAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-            <file>${user.home}/pro/logs/idservice.log</file>
+        <appender name="ProAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+            <file>${user.home}/logs/task-treasure/task-treasure_pro.log</file>
             <append>true</append>
             <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-                <fileNamePattern>${user.home}/logs/task-treasure/otherdays/idserver.%i.log
+                <fileNamePattern>${user.home}/logs/task-treasure/otherdays/task-treasure_pro.%i.log
                 </fileNamePattern>
                 <minIndex>1</minIndex>
                 <maxIndex>20</maxIndex>
@@ -90,15 +85,11 @@
             </encoder>
         </appender>
 
-
         <root level="warn">
-            <appender-ref ref="DefaultAppender"/>
+            <appender-ref ref="ProAppender"/>
         </root>
 
     </springProfile>
 
-    <root level="warn">
-        <appender-ref ref="DefaultAppender"/>
-    </root>
 
 </configuration>

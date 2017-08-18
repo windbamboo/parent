@@ -3,6 +3,8 @@ package com.weituitu.id.service;
 import com.weituitu.core.exception.ServiceException;
 import com.weituitu.id.api.IdService;
 
+import java.util.Random;
+
 /**
  * @描述:
  * @作者:liuguozhu
@@ -12,6 +14,8 @@ import com.weituitu.id.api.IdService;
 public class IdserviceImpl implements IdService {
 
     public long nextId() throws ServiceException {
-        return 0;
+        int number = new Random(10).nextInt();
+        System.out.println("服务器数据" + number);
+        return number;
     }
 }
