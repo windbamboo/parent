@@ -1,7 +1,6 @@
 package com.weituitu.task.treasure.conf;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 /**
  * @描述: motan可能需要动态修改的配置
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Component;
  * @创建:2017/8/17-上午11:23
  * @版本:v1.0
  */
-@Component
 @ConfigurationProperties(prefix = "motan")
 public class MotanConfig {
 

@@ -1,6 +1,5 @@
 package com.weituitu.task.treasure.web;
 
-import com.weibo.api.motan.config.springsupport.RegistryConfigBean;
 import com.weibo.api.motan.config.springsupport.annotation.MotanReferer;
 import com.weituitu.core.exception.ServiceException;
 import com.weituitu.id.api.IdService;

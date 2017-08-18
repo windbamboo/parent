@@ -13,14 +13,13 @@
 
 
     <context:component-scan base-package="com.weituitu.id"/>
-    <motan:registry regProtocol="${motan.regProtocol}" name="zookeeper_registry" connectTimeout="30000"
+    <motan:registry regProtocol="${motan.regProtocol}" name="zookeeper_registry"
                     address="${motan.regAddress}"/>
 
     <!-- service implemention bean -->
     <bean id="idService" class="com.weituitu.id.service.IdserviceImpl"/>
     <!-- exporting service by Motan -->
     <motan:service interface="com.weituitu.id.api.IdService" registry="zookeeper_registry" ref="idService"
-                   requestTimeout="5000"
                    export="${motan.server.port}"/>
 
 </beans>
