@@ -2,7 +2,9 @@ package com.weituitu.task.treasure;
 
 import com.weibo.api.motan.closable.ShutDownHookListener;
 import com.weibo.api.motan.config.springsupport.AnnotationBean;
+import com.weibo.api.motan.filter.opentracing.OpenTracingContext;
 import com.weituitu.task.treasure.conf.MotanConfig;
+import com.weituitu.task.treasure.tracer.MyTracerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,6 +25,8 @@ public class Application implements ServletContextInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+        // set tracer implementation
+        OpenTracingContext.tracerFactory = new MyTracerFactory();
     }
 
     @Autowired

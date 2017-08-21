@@ -6,6 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
    http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
  http://www.ctrip.com/schema/apollo http://www.ctrip.com/schema/apollo.xsd">
+
     <apollo:config/>
 
     <apollo:config namespaces="back-end.motan"/>
@@ -18,7 +19,7 @@
 
 
     <!-- 使用直连方便测试，可以替换为其他注册中心 -->
-    <motan:registry regProtocol="direct" address="localhost:8002" name="directRegistry"/>
+    <motan:registry regProtocol="direct" address="localhost:8001" name="directRegistry"/>
 
     <!-- motan协议配置 -->
     <motan:protocol default="true" name="motan" haStrategy="failover"
@@ -27,20 +28,20 @@
 
     <!-- 通用referer基础配置 -->
     <motan:basicReferer requestTimeout="300" accessLog="false"
-                        retries="2" protocol="motan" id="motantestClientBasicConfig"
+                        retries="2" group="aliyun-ac-server" module="ac-server"
+                        application="ac-server" protocol="motan" id="motantestClientBasicConfig"
                         registry="my_registry" throwException="true"
                         check="true"/>
 
     <motan:basicService accessLog="true" shareChannel="true" registry="my_registry" id="serviceBasicConfig"/>
 
 
-    <motan:referer id="acService" interface="com.weituitu.ac.api.AcService" basicReferer="motantestClientBasicConfig"/>
-
     <!-- service implemention bean -->
-    <bean id="idService" class="com.weituitu.id.service.IdserviceImpl"/>
+    <bean id="acService" class="com.weituitu.ac.service.AcServiceImpl"/>
     <!-- exporting service by Motan -->
-    <motan:service interface="com.weituitu.id.api.IdService" registry="my_registry" ref="idService"
-                   export="${motan.server.port}"/>
+    <motan:service interface="com.weituitu.ac.api.AcService" registry="my_registry" ref="acService"
+                   export="${motan.server.port}" basicService="serviceBasicConfig">
+    </motan:service>
 
 
 </beans>

@@ -8,5 +8,5 @@ package com.weituitu.ac.api;
  */
 public interface AcService {
 
-
+    String getName();
 }

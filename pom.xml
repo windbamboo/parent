@@ -31,6 +31,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <springboot.version>1.5.5.RELEASE</springboot.version>
+        <opentracing.version>0.20.4</opentracing.version>
     </properties>
 
     <dependencyManagement>
@@ -158,6 +159,74 @@
                         <artifactId>log4j</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.weibo</groupId>
+                <artifactId>filter-opentracing</artifactId>
+                <version>0.3.1</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>io.opentracing</groupId>
+                <artifactId>opentracing-api</artifactId>
+                <version>${opentracing.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.opentracing</groupId>
+                <artifactId>opentracing-impl</artifactId>
+                <version>${opentracing.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>io.opentracing</groupId>
+                <artifactId>opentracing-mock</artifactId>
+                <version>${opentracing.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.opentracing.brave</groupId>
+                <artifactId>brave-opentracing</artifactId>
+                <version>0.16.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.zipkin.brave</groupId>
+                <artifactId>brave-core</artifactId>
+                <version>3.9.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.zipkin.brave</groupId>
+                <artifactId>brave-http</artifactId>
+                <version>3.9.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.zipkin.brave</groupId>
+                <artifactId>brave-spancollector-http</artifactId>
+                <version>3.9.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.zipkin.brave</groupId>
+                <artifactId>brave-web-servlet-filter</artifactId>
+                <version>3.9.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.zipkin.brave</groupId>
+                <artifactId>brave-okhttp</artifactId>
+                <version>3.9.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ning</groupId>
+                <artifactId>async-http-client</artifactId>
+                <version>1.9.31</version>
             </dependency>
 
             <dependency>

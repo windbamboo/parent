@@ -1,8 +1,12 @@
 package com.weituitu.id.service;
 
+import com.weituitu.ac.api.AcService;
 import com.weituitu.core.exception.ServiceException;
 import com.weituitu.id.api.IdService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -13,9 +17,22 @@ import java.util.Random;
  */
 public class IdserviceImpl implements IdService {
 
+    @Autowired
+    AcService acService;
+
     public long nextId() throws ServiceException {
-        int number = new Random(10).nextInt();
-        System.out.println("服务器数据" + number);
+        System.out.println("服务器数据1 " + new Date().toLocaleString());
+        String name = acService.getName();
+        System.out.println("调用ac服务 " + name);
+
+        int number = new Random(25).nextInt(5);
+        try {
+            Thread.sleep(number * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("服务器数据2 " + new Date().toLocaleString());
+
         return number;
     }
 }
