@@ -40,8 +40,16 @@
     <bean id="acService" class="com.weituitu.ac.service.AcServiceImpl"/>
     <!-- exporting service by Motan -->
     <motan:service interface="com.weituitu.ac.api.AcService" registry="my_registry" ref="acService"
-                   export="${motan.server.port}" basicService="serviceBasicConfig">
+                   filter="opentracing" export="${motan.server.port}" basicService="serviceBasicConfig">
     </motan:service>
 
+
+    <!-- replace tracer implementation -->
+    <bean id="myOpenTracingFactory" class="com.weituitu.zipkin.tracer.MyTracerFactory">
+        <constructor-arg value="ac-server"/>
+    </bean>
+    <bean id="opentracingContext" class="com.weibo.api.motan.filter.opentracing.OpenTracingContext">
+        <property name="tracerFactory" ref="myOpenTracingFactory"/>
+    </bean>
 
 </beans>

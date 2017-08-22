@@ -3,10 +3,8 @@ package com.weituitu.task.treasure.web;
 import com.weibo.api.motan.config.springsupport.annotation.MotanReferer;
 import com.weituitu.core.exception.ServiceException;
 import com.weituitu.id.api.IdService;
-import com.weituitu.task.treasure.conf.MotanConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,9 +20,6 @@ public class LoginController {
 
     private static final Logger LOG = LoggerFactory.getLogger(LoginController.class);
 
-    @Autowired
-    MotanConfig motanConfig;
-
 
     @MotanReferer(basicReferer = "motanClientBasicConfig")
     IdService idService;
@@ -36,10 +31,7 @@ public class LoginController {
      */
     @RequestMapping("/login")
     public ResponseEntity<String> login() throws ServiceException {
-        LOG.info("test");
-        LOG.info(motanConfig.getRegProtocol());
-        LOG.info(motanConfig.getRegAddress());
-        LOG.info("########" + String.valueOf(idService.nextId()));
+        long id = idService.nextId();
         return ResponseEntity.ok("success");
     }
 }

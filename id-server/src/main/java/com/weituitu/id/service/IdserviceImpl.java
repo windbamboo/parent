@@ -1,10 +1,10 @@
 package com.weituitu.id.service;
 
+import com.weibo.api.motan.config.springsupport.annotation.MotanReferer;
 import com.weituitu.ac.api.AcService;
 import com.weituitu.core.exception.ServiceException;
 import com.weituitu.id.api.IdService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.Random;

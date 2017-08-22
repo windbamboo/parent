@@ -1,9 +1,11 @@
 package com.weituitu.task.treasure.conf;
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
+import com.weibo.api.motan.config.springsupport.AnnotationBean;
 import com.weibo.api.motan.config.springsupport.BasicRefererConfigBean;
 import com.weibo.api.motan.config.springsupport.ProtocolConfigBean;
 import com.weibo.api.motan.config.springsupport.RegistryConfigBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,10 +19,13 @@ import org.springframework.context.annotation.Configuration;
 @EnableApolloConfig(value = {"back-end.motan"}, order = 1)
 public class AppConfig {
 
+
     /**
      * motan 配置文件
      */
+    @Autowired
     private MotanConfig motanConfig;
+
 
     /**
      * motan配置文件
@@ -78,6 +83,7 @@ public class AppConfig {
         config.setRetries(motanConfig.getRetries());
         config.setThrowException(motanConfig.getThrowException());
         config.setRequestTimeout(motanConfig.getRequestTimeout());
+        config.setFilter("opentracing");
         return config;
     }
 }

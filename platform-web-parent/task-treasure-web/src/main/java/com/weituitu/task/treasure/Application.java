@@ -3,9 +3,7 @@ package com.weituitu.task.treasure;
 import com.weibo.api.motan.closable.ShutDownHookListener;
 import com.weibo.api.motan.config.springsupport.AnnotationBean;
 import com.weibo.api.motan.filter.opentracing.OpenTracingContext;
-import com.weituitu.task.treasure.conf.MotanConfig;
-import com.weituitu.task.treasure.tracer.MyTracerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.weituitu.zipkin.tracer.MyTracerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
@@ -24,13 +22,10 @@ import javax.servlet.ServletException;
 public class Application implements ServletContextInitializer {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
         // set tracer implementation
-        OpenTracingContext.tracerFactory = new MyTracerFactory();
+        OpenTracingContext.tracerFactory = new MyTracerFactory("task-treasure");
+        SpringApplication.run(Application.class, args);
     }
-
-    @Autowired
-    MotanConfig motanConfig;
 
     /**
      * 添加关闭motan客户端监听器
@@ -43,13 +38,11 @@ public class Application implements ServletContextInitializer {
         servletContext.addListener(new ShutDownHookListener());
     }
 
-
     @Bean
     public AnnotationBean motanAnnotationBean() {
         AnnotationBean motanAnnotationBean = new AnnotationBean();
         motanAnnotationBean.setPackage("com.weituitu.task.treasure");
         return motanAnnotationBean;
     }
-
 
 }
