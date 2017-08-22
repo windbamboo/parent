@@ -1,6 +1,7 @@
 package com.weituitu.task.treasure.web;
 
 import com.weibo.api.motan.config.springsupport.annotation.MotanReferer;
+import com.weituitu.ac.api.AcService;
 import com.weituitu.core.exception.ServiceException;
 import com.weituitu.id.api.IdService;
 import org.slf4j.Logger;
@@ -24,6 +25,9 @@ public class LoginController {
     @MotanReferer(basicReferer = "motanClientBasicConfig")
     IdService idService;
 
+    @MotanReferer(basicReferer = "motanClientBasicConfig")
+    AcService acService;
+
     /**
      * 用户登录
      *
@@ -32,6 +36,13 @@ public class LoginController {
     @RequestMapping("/login")
     public ResponseEntity<String> login() throws ServiceException {
         long id = idService.nextId();
+        return ResponseEntity.ok("success");
+    }
+
+    @RequestMapping("/test")
+    public ResponseEntity<String> test() throws ServiceException {
+        acService.getName();
+        idService.nextId();
         return ResponseEntity.ok("success");
     }
 }

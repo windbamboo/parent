@@ -26,11 +26,11 @@ public class IdserviceImpl implements IdService {
         System.out.println("调用ac服务 " + name);
 
         int number = new Random(25).nextInt(5);
-        try {
+       /* try {
             Thread.sleep(number * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
         System.out.println("服务器数据2 " + new Date().toLocaleString());
 
         return number;
