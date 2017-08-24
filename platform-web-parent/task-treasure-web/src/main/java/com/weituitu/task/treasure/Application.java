@@ -23,7 +23,7 @@ public class Application implements ServletContextInitializer {
 
     public static void main(String[] args) {
         // set tracer implementation
-        OpenTracingContext.tracerFactory = new MyTracerFactory("task-treasure");
+        OpenTracingContext.tracerFactory = new MyTracerFactory("task-treasure-client");
         SpringApplication.run(Application.class, args);
     }
 

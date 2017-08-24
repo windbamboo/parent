@@ -33,14 +33,26 @@ public class LoginController {
      *
      * @return
      */
-    @RequestMapping("/login")
+    @RequestMapping("/oneWay")
     public ResponseEntity<String> login() throws ServiceException {
         long id = idService.nextId();
         return ResponseEntity.ok("success");
     }
 
-    @RequestMapping("/test")
-    public ResponseEntity<String> test() throws ServiceException {
+    @RequestMapping("/acService")
+    public ResponseEntity<String> acService() throws ServiceException {
+        acService.getName();
+        return ResponseEntity.ok("success");
+    }
+
+    @RequestMapping("/idService")
+    public ResponseEntity<String> idService() throws ServiceException {
+        idService.nextId();
+        return ResponseEntity.ok("success");
+    }
+
+    @RequestMapping("/ai")
+    public ResponseEntity<String> ai() throws ServiceException {
         acService.getName();
         idService.nextId();
         return ResponseEntity.ok("success");

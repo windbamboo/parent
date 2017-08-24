@@ -10,52 +10,73 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>zipkin-tracer</artifactId>
+    <properties>
+        <opentracing.version>0.20.4</opentracing.version>
+    </properties>
 
     <dependencies>
         <dependency>
-            <groupId>com.weibo</groupId>
-            <artifactId>filter-opentracing</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.opentracing</groupId>
             <artifactId>opentracing-api</artifactId>
+            <version>${opentracing.version}</version>
         </dependency>
         <dependency>
             <groupId>io.opentracing</groupId>
             <artifactId>opentracing-impl</artifactId>
+            <version>${opentracing.version}</version>
         </dependency>
+
+
         <dependency>
             <groupId>io.opentracing</groupId>
             <artifactId>opentracing-mock</artifactId>
+            <version>${opentracing.version}</version>
         </dependency>
+
         <dependency>
             <groupId>io.opentracing.brave</groupId>
             <artifactId>brave-opentracing</artifactId>
+            <version>0.16.0</version>
         </dependency>
-        <dependency>
-            <groupId>io.zipkin.brave</groupId>
-            <artifactId>brave-spancollector-http</artifactId>
-        </dependency>
-
 
         <dependency>
             <groupId>io.zipkin.brave</groupId>
             <artifactId>brave-core</artifactId>
+            <version>3.9.0</version>
         </dependency>
 
         <dependency>
             <groupId>io.zipkin.brave</groupId>
             <artifactId>brave-http</artifactId>
+            <version>3.9.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.zipkin.brave</groupId>
+            <artifactId>brave-spancollector-http</artifactId>
+            <version>3.9.0</version>
         </dependency>
 
         <dependency>
             <groupId>io.zipkin.brave</groupId>
             <artifactId>brave-web-servlet-filter</artifactId>
+            <version>3.9.0</version>
         </dependency>
 
         <dependency>
             <groupId>io.zipkin.brave</groupId>
             <artifactId>brave-okhttp</artifactId>
+            <version>3.9.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ning</groupId>
+            <artifactId>async-http-client</artifactId>
+            <version>1.9.31</version>
+        </dependency>
+        <dependency>
+            <groupId>com.weibo</groupId>
+            <artifactId>filter-opentracing</artifactId>
         </dependency>
     </dependencies>
 
