@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 @EnableZipkinServer
 public class ServerZipkinApplication {
     public static void main(String[] args) {
+
         SpringApplication.run(ServerZipkinApplication.class, args);
     }
 

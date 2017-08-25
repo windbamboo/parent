@@ -6,9 +6,17 @@ import com.weituitu.core.exception.ServiceException;
 import com.weituitu.id.api.IdService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.sleuth.Span;
+import org.springframework.cloud.sleuth.instrument.web.TraceFilter;
+import org.springframework.cloud.sleuth.trace.DefaultTracer;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 
 /**
  * @描述:
@@ -28,6 +36,8 @@ public class LoginController {
     @MotanReferer(basicReferer = "motanClientBasicConfig")
     AcService acService;
 
+
+
     /**
      * 用户登录
      *
@@ -46,7 +56,20 @@ public class LoginController {
     }
 
     @RequestMapping("/idService")
-    public ResponseEntity<String> idService() throws ServiceException {
+    public ResponseEntity<String> idService(HttpServletRequest request) throws ServiceException {
+        Enumeration<String> headerEn = request.getHeaderNames();
+        while (null != headerEn && headerEn.hasMoreElements()) {
+            String headerName = headerEn.nextElement();
+            String headerValue = request.getHeader(headerName);
+            System.out.printf("headerName:%s,headerValue:%s\r\n", headerName, headerValue);
+        }
+        String TRACE_REQUEST_ATTR = TraceFilter.class.getName()
+                + ".TRACE";
+
+        Span span = (Span) request.getAttribute(TRACE_REQUEST_ATTR);
+        System.out.println(span);
+
+
         idService.nextId();
         return ResponseEntity.ok("success");
     }

@@ -19,6 +19,7 @@
         <module>platform-web-parent</module>
         <module>zipkin-tracer</module>
         <module>zipkin-server</module>
+        <module>motan-zipkin-extension</module>
     </modules>
     <packaging>pom</packaging>
 
