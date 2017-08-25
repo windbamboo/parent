@@ -20,19 +20,9 @@ public class IdserviceImpl implements IdService {
     @Autowired
     AcService acService;
 
-    public long nextId() throws ServiceException {
-        System.out.println("服务器数据1 " + new Date().toLocaleString());
-        String name = acService.getName();
-        System.out.println("调用ac服务 " + name);
+    public String nextId() throws ServiceException {
 
-        int number = new Random(25).nextInt(5);
-       /* try {
-            Thread.sleep(number * 1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }*/
-        System.out.println("服务器数据2 " + new Date().toLocaleString());
+        return acService.getName();
 
-        return number;
     }
 }

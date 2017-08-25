@@ -16,5 +16,5 @@ public interface IdService {
      *
      * @return
      */
-    long nextId() throws ServiceException;
+    String nextId() throws ServiceException;
 }

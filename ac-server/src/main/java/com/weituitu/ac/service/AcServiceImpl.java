@@ -3,6 +3,8 @@ package com.weituitu.ac.service;
 import com.weituitu.ac.api.AcService;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * @描述:
  * @作者:liuguozhu
@@ -13,6 +15,6 @@ import org.springframework.stereotype.Service;
 public class AcServiceImpl implements AcService {
     @Override
     public String getName() {
-        return "sundy";
+        return new Date().toString();
     }
 }

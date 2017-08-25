@@ -35,7 +35,7 @@ public class LoginController {
      */
     @RequestMapping("/oneWay")
     public ResponseEntity<String> login() throws ServiceException {
-        long id = idService.nextId();
+        idService.nextId();
         return ResponseEntity.ok("success");
     }
 
