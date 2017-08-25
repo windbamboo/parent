@@ -8,7 +8,6 @@ import com.weibo.api.motan.rpc.Request;
 import com.weibo.api.motan.rpc.Response;
 import org.springframework.cloud.sleuth.Span;
 import org.springframework.cloud.sleuth.trace.DefaultTracer;
-import org.springframework.context.ApplicationContextAware;
 
 /**
  * @描述: motan zipkin客户端扩展,该类主要是想利用springcloud封装的一套接口带来的便利，继续使用它。
@@ -38,6 +37,8 @@ public class MotanClientFilter implements Filter {
                 request.getAttachments().put(OpentracingMotankeys.SAMPLED, "1");
                 request.getAttachments().put(OpentracingMotankeys.TRACEID, String.valueOf(traceId));
                 request.getAttachments().put(OpentracingMotankeys.SPANID, String.valueOf(spanId));
+                request.getAttachments().put(OpentracingMotankeys.SPANID, getParentIdIfPresent(span));
+
             }
             return caller.call(request);
         }
@@ -45,5 +46,9 @@ public class MotanClientFilter implements Filter {
 
     }
 
+
+    private String getParentIdIfPresent(Span span) {
+        return span.getParents().isEmpty() ? "null" : Span.idToHex(span.getParents().get(0));
+    }
 
 }
