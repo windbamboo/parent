@@ -2,7 +2,6 @@ package com.weituitu.task.treasure.conf;
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import com.github.kristofa.brave.Brave;
-import com.weibo.api.motan.config.springsupport.AnnotationBean;
 import com.weibo.api.motan.config.springsupport.BasicRefererConfigBean;
 import com.weibo.api.motan.config.springsupport.ProtocolConfigBean;
 import com.weibo.api.motan.config.springsupport.RegistryConfigBean;

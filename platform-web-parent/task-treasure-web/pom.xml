@@ -12,6 +12,14 @@
     <artifactId>task-treasure-web</artifactId>
 
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <brave.version>4.5.1</brave.version>
+        <zipkin-reporter.version>1.0.0</zipkin-reporter.version>
+        <spring.version>4.3.8.RELEASE</spring.version>
+        <log4j.version>2.8.2</log4j.version>
+    </properties>
+
     <dependencies>
 
         <dependency>
@@ -81,6 +89,16 @@
             <artifactId>zipkin-extension</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+        </dependency>
+        
         <dependency>
             <groupId>com.weituitu</groupId>
             <artifactId>sleuth-motan-extension</artifactId>
