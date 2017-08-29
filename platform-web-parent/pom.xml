@@ -43,16 +43,11 @@
             <artifactId>apollo-client</artifactId>
         </dependency>
 
-        <!--springcloud zipkin扩展-->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <groupId>com.weibo</groupId>
+            <artifactId>zipkin-extension</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
-        </dependency>
 
     </dependencies>
 

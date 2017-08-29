@@ -23,15 +23,7 @@ import javax.servlet.ServletException;
 public class Application implements ServletContextInitializer {
 
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(Application.class, args);
-        String[] beanNames = ctx.getBeanDefinitionNames();
-        for (String temp : beanNames) {
-            if (temp.contains("tracer")) {
-                System.out.println();
-            }
-
-        }
-        System.out.println(beanNames);
+        SpringApplication.run(Application.class, args);
     }
 
     /**

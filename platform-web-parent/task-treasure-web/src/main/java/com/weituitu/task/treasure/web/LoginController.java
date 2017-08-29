@@ -37,7 +37,6 @@ public class LoginController {
     AcService acService;
 
 
-
     /**
      * 用户登录
      *
@@ -67,7 +66,7 @@ public class LoginController {
                 + ".TRACE";
 
         Span span = (Span) request.getAttribute(TRACE_REQUEST_ATTR);
-        System.out.println(span);
+        //System.out.println(span);
 
 
         idService.nextId();

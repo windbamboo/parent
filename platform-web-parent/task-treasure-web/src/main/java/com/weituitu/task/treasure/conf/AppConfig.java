@@ -1,6 +1,7 @@
 package com.weituitu.task.treasure.conf;
 
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
+import com.github.kristofa.brave.Brave;
 import com.weibo.api.motan.config.springsupport.AnnotationBean;
 import com.weibo.api.motan.config.springsupport.BasicRefererConfigBean;
 import com.weibo.api.motan.config.springsupport.ProtocolConfigBean;
@@ -8,6 +9,8 @@ import com.weibo.api.motan.config.springsupport.RegistryConfigBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import zipkin.reporter.AsyncReporter;
+import zipkin.reporter.okhttp3.OkHttpSender;
 
 /**
  * @描述:
@@ -36,6 +39,33 @@ public class AppConfig {
     public MotanConfig motanConfig() {
         motanConfig = new MotanConfig();
         return motanConfig;
+    }
+
+
+    @Bean
+    public ZipkinConfig zipkinConfig() {
+        return new ZipkinConfig();
+    }
+
+
+    public static final String BRAVE_ZIPKIN_BEAN_NAME = "spring-boot-brave-of-zipkin";
+
+    @Bean(name = BRAVE_ZIPKIN_BEAN_NAME)
+    public Brave brave(ZipkinConfig zipkinConfig) {
+        System.out.println("读取配置文件:" + zipkinConfig.toString());
+        Brave.Builder builder = new Brave.Builder(zipkinConfig.getApplication())
+                .reporter(
+                        AsyncReporter
+                                .builder(
+                                        // okhttp3
+                                        OkHttpSender.builder().endpoint("http://" + zipkinConfig.getHost() + ":9411/api/v1/spans").compressionEnabled(true).build()
+                                )
+                                .build()
+                );
+        Brave brave = builder.build();
+        System.out.println("初始化 Brave : " + brave);
+
+        return brave;
     }
 
 
@@ -83,7 +113,7 @@ public class AppConfig {
         config.setRetries(motanConfig.getRetries());
         config.setThrowException(motanConfig.getThrowException());
         config.setRequestTimeout(motanConfig.getRequestTimeout());
-        config.setFilter("opentracing");
+        config.setFilter("zipkinfilter");
         return config;
     }
 }

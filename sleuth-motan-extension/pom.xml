@@ -9,14 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>motan-zipkin-extension</artifactId>
+    <artifactId>sleuth-motan-extension</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.weibo</groupId>
-            <artifactId>motan-core</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
@@ -26,14 +21,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-sleuth-zipkin</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+            <groupId>com.weibo</groupId>
+            <artifactId>motan-core</artifactId>
         </dependency>
 
     </dependencies>

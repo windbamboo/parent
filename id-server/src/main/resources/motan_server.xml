@@ -11,7 +11,7 @@
     <apollo:config namespaces="back-end.motan"/>
 
 
-    <context:component-scan base-package="com.weituitu.id"/>
+    <context:component-scan base-package="com.weituitu"/>
 
     <motan:registry regProtocol="${motan.regProtocol}" name="my_registry"
                     address="${motan.regAddress}"/>
@@ -40,14 +40,7 @@
     <bean id="idService" class="com.weituitu.id.service.IdserviceImpl"/>
     <!-- exporting service by Motan -->
     <motan:service interface="com.weituitu.id.api.IdService" registry="my_registry" ref="idService"
-                   filter="opentracing" export="${motan.server.port}"/>
+                   filter="zipkinfilter" export="${motan.server.port}"/>
 
-    <!-- replace tracer implementation -->
-    <bean id="myOpenTracingFactory" class="com.weituitu.zipkin.tracer.MyTracerFactory">
-        <constructor-arg value="id-server"/>
-    </bean>
-    <bean id="opentracingContext" class="com.weibo.api.motan.filter.opentracing.OpenTracingContext">
-        <property name="tracerFactory" ref="myOpenTracingFactory"/>
-    </bean>
 
 </beans>

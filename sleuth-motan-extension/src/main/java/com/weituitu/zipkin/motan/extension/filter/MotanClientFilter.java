@@ -10,13 +10,12 @@ import org.springframework.cloud.sleuth.Span;
 import org.springframework.cloud.sleuth.trace.DefaultTracer;
 
 /**
- * @描述: motan zipkin客户端扩展,该类主要是想利用springcloud封装的一套接口带来的便利，继续使用它。
- * TODO  异步处理获得当前的request参数方法用InheritableThreadLocal，后期支持扩展异步处理获得tracer
+ * @描述:
  * @作者:liuguozhu
  * @创建:2017/8/25-上午11:54
  * @版本:v1.0
  */
-@SpiMeta(name = "clientopentracing")
+@SpiMeta(name = "sleuthfilter")
 @Activation(sequence = 10)
 public class MotanClientFilter implements Filter {
 
@@ -30,15 +29,14 @@ public class MotanClientFilter implements Filter {
         if (null != tracer) {
             Span span = tracer.getCurrentSpan();
             if (null != span) {
-                long traceId = span.getTraceId();
-                long spanId = span.getSpanId();
-                String spanName = span.getName();
                 System.out.println(span);
-                request.getAttachments().put(OpentracingMotankeys.SAMPLED, "1");
-                request.getAttachments().put(OpentracingMotankeys.TRACEID, String.valueOf(traceId));
-                request.getAttachments().put(OpentracingMotankeys.SPANID, String.valueOf(spanId));
-                request.getAttachments().put(OpentracingMotankeys.SPANID, getParentIdIfPresent(span));
-
+                request.getAttachments().put(Span.TRACE_ID_NAME, Span.idToHex(span.getTraceId()));
+                request.getAttachments().put(Span.SPAN_NAME_NAME, span.getName());
+                request.getAttachments().put(Span.SPAN_ID_NAME, Span.idToHex(span.getSpanId()));
+                request.getAttachments().put(Span.SAMPLED_NAME, span.isExportable() ?
+                        Span.SPAN_SAMPLED : Span.SPAN_NOT_SAMPLED);
+                request.getAttachments().put(Span.PARENT_ID_NAME, getParentIdIfPresent(span));
+                System.out.println("sleuth filter traceId=" + Span.idToHex(span.getTraceId()));
             }
             return caller.call(request);
         }
