@@ -2,6 +2,7 @@ package com.weituitu.id.service;
 
 import com.weituitu.ac.api.AcService;
 import com.weituitu.core.exception.ServiceException;
+import com.weituitu.email.api.EmailService;
 import com.weituitu.id.api.IdService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,8 +17,11 @@ public class IdserviceImpl implements IdService {
     @Autowired
     AcService acService;
 
-    public String nextId() throws ServiceException {
+    @Autowired
+    EmailService emailService;
 
+    public String nextId() throws ServiceException {
+        emailService.sendEmail();
         return acService.getName();
 
     }

@@ -27,20 +27,18 @@
 
 
     <!-- 通用referer基础配置 -->
-    <motan:basicReferer requestTimeout="300" accessLog="false" protocol="motan" id="motantestClientBasicConfig"
+    <motan:basicReferer requestTimeout="300" accessLog="false"
+                        retries="2" protocol="motan" id="motantestClientBasicConfig"
                         registry="my_registry" throwException="true"
                         check="true"/>
 
     <motan:basicService accessLog="true" shareChannel="true" registry="my_registry" id="serviceBasicConfig"/>
 
-    <motan:referer id="messageService" filter="zipkinfilter" interface="com.weituitu.message.api.MessageService"
-                   basicReferer="motantestClientBasicConfig"/>
-
 
     <!-- service implemention bean -->
-    <bean id="acService" class="com.weituitu.ac.service.AcServiceImpl"/>
+    <bean id="emailService" class="com.weituitu.email.service.EmailServiceImpl"/>
     <!-- exporting service by Motan -->
-    <motan:service interface="com.weituitu.ac.api.AcService" registry="my_registry" ref="acService"
+    <motan:service interface="com.weituitu.email.api.EmailService" registry="my_registry" ref="emailService"
                    filter="zipkinfilter" export="${motan.server.port}" basicService="serviceBasicConfig">
     </motan:service>
 

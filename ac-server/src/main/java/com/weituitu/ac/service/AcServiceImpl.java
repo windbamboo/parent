@@ -1,6 +1,8 @@
 package com.weituitu.ac.service;
 
 import com.weituitu.ac.api.AcService;
+import com.weituitu.message.api.MessageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -13,8 +15,12 @@ import java.util.Date;
  */
 @Service
 public class AcServiceImpl implements AcService {
+    @Autowired
+    MessageService messageService;
+
     @Override
     public String getName() {
+        messageService.sendMessage();
         return new Date().toString();
     }
 }

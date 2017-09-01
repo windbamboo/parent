@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <appender name="DefaultAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/pro/logs/idservice.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${user.home}/logs/acserver/otherdays/acserver.%i.log
+            </fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>20</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1024MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <appender name="InfoAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/pro/logs/acserver_info.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${user.home}/logs/acserver/otherdays/acserver_info.%i.log
+            </fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>20</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1024MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <appender name="WarnAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/pro/logs/warn.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${user.home}/logs/acserver/otherdays/acserver_warn.%i.log
+            </fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>20</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1024MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <appender name="ErrorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/pro/logs/acserver_error.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${user.home}/logs/acserver/otherdays/acserver_error.%i.log
+            </fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>20</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1024MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ProfileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/pro/logs/acserver_profile.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${user.home}/logs/acserver/otherdays/acserver_profile.%i.log
+            </fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>20</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1024MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <appender name="TraceAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/pro/logs/acserver_trace.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${user.home}/logs/acserver/otherdays/acserver_trace.%i.log
+            </fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>20</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1024MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <appender name="AccessLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/pro/logs/acserver_access.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${user.home}/logs/acserver/otherdays/acserver_access.%i.log
+            </fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>20</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1024MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <appender name="ServiceStatsLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/pro/logs/acserver_serviceStat.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${user.home}/logs/acserver/otherdays/acserver_serverserviceStatsLog.%i.log
+            </fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>20</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy
+                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1024MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:-} --- [%15.15t] %-40.40logger{39} : %m%n</pattern>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <logger name="info" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="InfoAppender"/>
+    </logger>
+
+
+    <logger name="warn" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="WarnAppender"/>
+    </logger>
+
+    <logger name="error" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="ErrorAppender"/>
+    </logger>
+
+
+    <logger name="profile" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="ProfileAppender"/>
+    </logger>
+
+
+    <logger name="trace" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="TraceAppender"/>
+    </logger>
+
+    <logger name="accessLog" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="AccessLogAppender"/>
+    </logger>
+
+
+    <logger name="serviceStatsLog" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="ServiceStatsLogAppender"/>
+    </logger>
+
+
+    <root level="debug">
+        <appender-ref ref="DefaultAppender"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

@@ -34,7 +34,10 @@
     <motan:basicService accessLog="true" shareChannel="true" registry="my_registry" id="serviceBasicConfig"/>
 
 
-    <motan:referer id="acService" interface="com.weituitu.ac.api.AcService" basicReferer="motantestClientBasicConfig"/>
+    <motan:referer id="acService" filter="zipkinfilter"  interface="com.weituitu.ac.api.AcService" basicReferer="motantestClientBasicConfig"/>
+
+    <motan:referer id="emailService" filter="zipkinfilter"  interface="com.weituitu.email.api.EmailService" basicReferer="motantestClientBasicConfig"/>
+
 
     <!-- service implemention bean -->
     <bean id="idService" class="com.weituitu.id.service.IdserviceImpl"/>

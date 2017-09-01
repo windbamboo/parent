@@ -6,12 +6,7 @@ import com.weituitu.core.exception.ServiceException;
 import com.weituitu.id.api.IdService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.sleuth.Span;
-import org.springframework.cloud.sleuth.instrument.web.TraceFilter;
-import org.springframework.cloud.sleuth.trace.DefaultTracer;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -62,13 +57,6 @@ public class LoginController {
             String headerValue = request.getHeader(headerName);
             System.out.printf("headerName:%s,headerValue:%s\r\n", headerName, headerValue);
         }
-        String TRACE_REQUEST_ATTR = TraceFilter.class.getName()
-                + ".TRACE";
-
-        Span span = (Span) request.getAttribute(TRACE_REQUEST_ATTR);
-        //System.out.println(span);
-
-
         idService.nextId();
         return ResponseEntity.ok("success");
     }

@@ -8,8 +8,8 @@
     <modules>
         <module>ac-api</module>
         <module>ac-server</module>
-        <module>sms-api</module>
-        <module>sms-server</module>
+        <module>message-api</module>
+        <module>message-server</module>
         <module>email-api</module>
         <module>email-server</module>
         <module>wechat</module>
@@ -34,7 +34,6 @@
         <java.version>1.8</java.version>
         <springboot.version>1.5.5.RELEASE</springboot.version>
         <sleuth.version>1.2.1.RELEASE</sleuth.version>
-
     </properties>
 
     <dependencyManagement>
@@ -161,8 +160,6 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-
-
 
 
             <dependency>
