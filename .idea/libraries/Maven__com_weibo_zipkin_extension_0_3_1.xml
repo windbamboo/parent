@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: com.weibo:zipkin-extension:0.3.1">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/weibo/zipkin-extension/0.3.1/zipkin-extension-0.3.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/weibo/zipkin-extension/0.3.1/zipkin-extension-0.3.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/weibo/zipkin-extension/0.3.1/zipkin-extension-0.3.1-sources.jar!/" />
+      <root url="file://$PROJECT_DIR$/../motan/motan-extension/zipkin-extension/src/main/java" />
+    </SOURCES>
+  </library>
+</component>

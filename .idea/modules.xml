@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ac-api/ac-api.iml" filepath="$PROJECT_DIR$/ac-api/ac-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ac-server/ac-server.iml" filepath="$PROJECT_DIR$/ac-server/ac-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/email-api/email-api.iml" filepath="$PROJECT_DIR$/email-api/email-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/email-server/email-server.iml" filepath="$PROJECT_DIR$/email-server/email-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/id-api/id-api.iml" filepath="$PROJECT_DIR$/id-api/id-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/id-server/id-server.iml" filepath="$PROJECT_DIR$/id-server/id-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/message-api/message-api.iml" filepath="$PROJECT_DIR$/message-api/message-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/message-server/message-server.iml" filepath="$PROJECT_DIR$/message-server/message-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/parent.iml" filepath="$PROJECT_DIR$/parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-core/platform-core.iml" filepath="$PROJECT_DIR$/platform-core/platform-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-web-parent/platform-web-parent.iml" filepath="$PROJECT_DIR$/platform-web-parent/platform-web-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-web-parent/task-treasure-web/task-treasure-web.iml" filepath="$PROJECT_DIR$/platform-web-parent/task-treasure-web/task-treasure-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat/wechat.iml" filepath="$PROJECT_DIR$/wechat/wechat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/platform-web-parent/weituitu-web/weituitu-web.iml" filepath="$PROJECT_DIR$/platform-web-parent/weituitu-web/weituitu-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zipkin-server/zipkin-server.iml" filepath="$PROJECT_DIR$/zipkin-server/zipkin-server.iml" />
+    </modules>
+  </component>
+</project>

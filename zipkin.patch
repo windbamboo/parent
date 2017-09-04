@@ -1,0 +1,1061 @@
+Index: ac-server/src/main/java/com/weituitu/ac/conf/AppConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ac-server/src/main/java/com/weituitu/ac/conf/AppConfig.java	(revision 7ba8829d77c456e2aa40a31b1870a7a6021c66dd)
++++ ac-server/src/main/java/com/weituitu/ac/conf/AppConfig.java	(revision 7ba8829d77c456e2aa40a31b1870a7a6021c66dd)
+@@ -0,0 +1,45 @@
++package com.weituitu.ac.conf;
++
++import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
++import com.github.kristofa.brave.Brave;
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++import zipkin.reporter.AsyncReporter;
++import zipkin.reporter.okhttp3.OkHttpSender;
++
++/**
++ * @描述:
++ * @作者:liuguozhu
++ * @创建:2017/8/28-下午9:02
++ * @版本:v1.0
++ */
++@Configuration
++@EnableApolloConfig
++public class AppConfig {
++    @Bean
++    public ZipkinConfig zipkinConfig() {
++        return new ZipkinConfig();
++    }
++
++
++    public static final String BRAVE_ZIPKIN_BEAN_NAME = "spring-boot-brave-of-zipkin";
++
++    @Bean(name = BRAVE_ZIPKIN_BEAN_NAME)
++    public Brave brave(ZipkinConfig zipkinConfig) {
++        System.out.println("读取配置文件:" + zipkinConfig.toString());
++        Brave.Builder builder = new Brave.Builder(zipkinConfig.getApplication())
++                .reporter(
++                        AsyncReporter
++                                .builder(
++                                        // okhttp3
++                                        OkHttpSender.builder().endpoint("http://" + zipkinConfig.getHost() + ":9411/api/v1/spans").compressionEnabled(true).build()
++                                )
++                                .build()
++                );
++        Brave brave = builder.build();
++        System.out.println("初始化 Brave : " + brave);
++
++        return brave;
++    }
++
++}
+Index: ac-server/src/main/java/com/weituitu/ac/conf/ZipkinConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ac-server/src/main/java/com/weituitu/ac/conf/ZipkinConfig.java	(revision 7ba8829d77c456e2aa40a31b1870a7a6021c66dd)
++++ ac-server/src/main/java/com/weituitu/ac/conf/ZipkinConfig.java	(revision 7ba8829d77c456e2aa40a31b1870a7a6021c66dd)
+@@ -0,0 +1,54 @@
++package com.weituitu.ac.conf;
++
++import org.springframework.beans.factory.annotation.Value;
++
++/**
++ * @描述:
++ * @作者:liuguozhu
++ * @创建:2017/8/28-下午9:01
++ * @版本:v1.0
++ */
++public class ZipkinConfig {
++
++    /**
++     * 地址
++     */
++    @Value("${zipkin.server.host}")
++    private String host;
++
++    /**
++     * 端口
++     */
++    @Value("${zipkin.server.port}")
++    private String port = "9411";
++
++    /**
++     * 应用名称
++     */
++    @Value("${zipkin.server.application}")
++    private String application;
++
++    public String getHost() {
++        return host;
++    }
++
++    public void setHost(String host) {
++        this.host = host;
++    }
++
++    public String getPort() {
++        return port;
++    }
++
++    public void setPort(String port) {
++        this.port = port;
++    }
++
++    public String getApplication() {
++        return application;
++    }
++
++    public void setApplication(String application) {
++        this.application = application;
++    }
++}
+Index: id-server/src/main/java/com/weituitu/id/conf/AppConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- id-server/src/main/java/com/weituitu/id/conf/AppConfig.java	(revision 7ba8829d77c456e2aa40a31b1870a7a6021c66dd)
++++ id-server/src/main/java/com/weituitu/id/conf/AppConfig.java	(revision 7ba8829d77c456e2aa40a31b1870a7a6021c66dd)
+@@ -0,0 +1,45 @@
++package com.weituitu.id.conf;
++
++import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
++import com.github.kristofa.brave.Brave;
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++import zipkin.reporter.AsyncReporter;
++import zipkin.reporter.okhttp3.OkHttpSender;
++
++/**
++ * @描述:
++ * @作者:liuguozhu
++ * @创建:2017/8/28-下午9:02
++ * @版本:v1.0
++ */
++@Configuration
++@EnableApolloConfig
++public class AppConfig {
++    @Bean
++    public ZipkinConfig zipkinConfig() {
++        return new ZipkinConfig();
++    }
++
++
++    public static final String BRAVE_ZIPKIN_BEAN_NAME = "spring-boot-brave-of-zipkin";
++
++    @Bean(name = BRAVE_ZIPKIN_BEAN_NAME)
++    public Brave brave(ZipkinConfig zipkinConfig) {
++        System.out.println("读取配置文件:" + zipkinConfig.toString());
++        Brave.Builder builder = new Brave.Builder(zipkinConfig.getApplication())
++                .reporter(
++                        AsyncReporter
++                                .builder(
++                                        // okhttp3
++                                        OkHttpSender.builder().endpoint("http://" + zipkinConfig.getHost() + ":9411/api/v1/spans").compressionEnabled(true).build()
++                                )
++                                .build()
++                );
++        Brave brave = builder.build();
++        System.out.println("初始化 Brave : " + brave);
++
++        return brave;
++    }
++
++}
+Index: id-server/src/main/java/com/weituitu/id/conf/ZipkinConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- id-server/src/main/java/com/weituitu/id/conf/ZipkinConfig.java	(revision 7ba8829d77c456e2aa40a31b1870a7a6021c66dd)
++++ id-server/src/main/java/com/weituitu/id/conf/ZipkinConfig.java	(revision 7ba8829d77c456e2aa40a31b1870a7a6021c66dd)
+@@ -0,0 +1,54 @@
++package com.weituitu.id.conf;
++
++import org.springframework.beans.factory.annotation.Value;
++
++/**
++ * @描述:
++ * @作者:liuguozhu
++ * @创建:2017/8/28-下午9:01
++ * @版本:v1.0
++ */
++public class ZipkinConfig {
++
++    /**
++     * 地址
++     */
++    @Value("${zipkin.server.host}")
++    private String host;
++
++    /**
++     * 端口
++     */
++    @Value("${zipkin.server.port}")
++    private String port = "9411";
++
++    /**
++     * 应用名称
++     */
++    @Value("${zipkin.server.application}")
++    private String application;
++
++    public String getHost() {
++        return host;
++    }
++
++    public void setHost(String host) {
++        this.host = host;
++    }
++
++    public String getPort() {
++        return port;
++    }
++
++    public void setPort(String port) {
++        this.port = port;
++    }
++
++    public String getApplication() {
++        return application;
++    }
++
++    public void setApplication(String application) {
++        this.application = application;
++    }
++}
+Index: platform-web-parent/task-treasure-web/src/main/java/com/weituitu/task/treasure/conf/ZipkinConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platform-web-parent/task-treasure-web/src/main/java/com/weituitu/task/treasure/conf/ZipkinConfig.java	(revision 7ba8829d77c456e2aa40a31b1870a7a6021c66dd)
++++ platform-web-parent/task-treasure-web/src/main/java/com/weituitu/task/treasure/conf/ZipkinConfig.java	(revision 7ba8829d77c456e2aa40a31b1870a7a6021c66dd)
+@@ -0,0 +1,58 @@
++package com.weituitu.task.treasure.conf;
++
++import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
++import org.springframework.beans.factory.annotation.Value;
++import org.springframework.context.annotation.Configuration;
++
++/**
++ * @描述:
++ * @作者:liuguozhu
++ * @创建:2017/8/28-下午9:01
++ * @版本:v1.0
++ */
++@Configuration
++@EnableApolloConfig(value = {"back-end.motan"}, order = 1)
++public class ZipkinConfig {
++
++    /**
++     * 地址
++     */
++    @Value("${zipkin.server.host}")
++    private String host;
++
++    /**
++     * 端口
++     */
++    @Value("${zipkin.server.port}")
++    private String port = "9411";
++
++    /**
++     * 应用名称
++     */
++    @Value("${zipkin.server.application}")
++    private String application;
++
++    public String getHost() {
++        return host;
++    }
++
++    public void setHost(String host) {
++        this.host = host;
++    }
++
++    public String getPort() {
++        return port;
++    }
++
++    public void setPort(String port) {
++        this.port = port;
++    }
++
++    public String getApplication() {
++        return application;
++    }
++
++    public void setApplication(String application) {
++        this.application = application;
++    }
++}
+Index: sleuth-motan-extension/sleuth-motan-extension.iml
+===================================================================
+--- sleuth-motan-extension/sleuth-motan-extension.iml	(revision 7ba8829d77c456e2aa40a31b1870a7a6021c66dd)
++++ sleuth-motan-extension/sleuth-motan-extension.iml	(revision 7ba8829d77c456e2aa40a31b1870a7a6021c66dd)
+@@ -0,0 +1,62 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
++  <component name="FacetManager">
++    <facet type="Spring" name="Spring">
++      <configuration />
++    </facet>
++  </component>
++  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
++    <output url="file://$MODULE_DIR$/target/classes" />
++    <output-test url="file://$MODULE_DIR$/target/test-classes" />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
++      <excludeFolder url="file://$MODULE_DIR$/target" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-starter-sleuth:1.2.1.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-starter:1.2.2.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:1.5.5.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:1.5.5.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:1.5.5.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:1.5.5.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: ch.qos.logback:logback-classic:1.2.3" level="project" />
++    <orderEntry type="library" name="Maven: ch.qos.logback:logback-core:1.2.3" level="project" />
++    <orderEntry type="library" name="Maven: org.slf4j:jcl-over-slf4j:1.7.25" level="project" />
++    <orderEntry type="library" name="Maven: org.slf4j:jul-to-slf4j:1.7.25" level="project" />
++    <orderEntry type="library" name="Maven: org.slf4j:log4j-over-slf4j:1.7.25" level="project" />
++    <orderEntry type="library" scope="RUNTIME" name="Maven: org.yaml:snakeyaml:1.17" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-context:1.2.2.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-rsa:1.0.3.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.bouncycastle:bcpkix-jdk15on:1.55" level="project" />
++    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk15on:1.55" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:1.5.5.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework:spring-aop:4.3.10.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.8.10" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-sleuth-core:1.2.1.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework:spring-context:4.2.4.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.3.10.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.8.10" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-sleuth-zipkin:1.2.1.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework:spring-web:4.3.10.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.3.10.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework:spring-core:4.3.10.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-commons:1.2.2.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:4.2.3.RELEASE" level="project" />
++    <orderEntry type="library" name="Maven: io.zipkin.java:zipkin:1.23.2" level="project" />
++    <orderEntry type="library" name="Maven: io.zipkin.reporter:zipkin-reporter:0.7.0" level="project" />
++    <orderEntry type="library" name="Maven: com.weibo:motan-core:0.3.1" level="project" />
++    <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.6" level="project" />
++    <orderEntry type="library" name="Maven: com.caucho:hessian:4.0.38" level="project" />
++    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.1.30" level="project" />
++    <orderEntry type="library" name="Maven: com.codahale.metrics:metrics-core:3.0.1" level="project" />
++    <orderEntry type="library" name="Maven: com.google.guava:guava:18.0" level="project" />
++    <orderEntry type="library" name="Maven: com.squareup:javapoet:1.8.0" level="project" />
++    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
++    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.1" level="project" />
++    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.10" level="project" />
++  </component>
++</module>
+\ No newline at end of file
+Index: ac-server/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ac-server/pom.xml	(date 1503654347000)
++++ ac-server/pom.xml	(date 1503989263000)
+@@ -83,10 +83,10 @@
+             <artifactId>apollo-client</artifactId>
+         </dependency>
+ 
++
+         <dependency>
+-            <groupId>com.weituitu</groupId>
+-            <artifactId>zipkin-tracer</artifactId>
+-            <version>1.0-SNAPSHOT</version>
++            <groupId>com.weibo</groupId>
++            <artifactId>zipkin-extension</artifactId>
+         </dependency>
+ 
+         <dependency>
+Index: ac-server/src/main/resources/motan_server.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- ac-server/src/main/resources/motan_server.xml	(date 1503654347000)
++++ ac-server/src/main/resources/motan_server.xml	(date 1503989263000)
+@@ -12,7 +12,7 @@
+     <apollo:config namespaces="back-end.motan"/>
+ 
+ 
+-    <context:component-scan base-package="com.weituitu.ac"/>
++    <context:component-scan base-package="com.weituitu"/>
+ 
+     <motan:registry regProtocol="${motan.regProtocol}" name="my_registry"
+                     address="${motan.regAddress}"/>
+@@ -40,16 +40,7 @@
+     <bean id="acService" class="com.weituitu.ac.service.AcServiceImpl"/>
+     <!-- exporting service by Motan -->
+     <motan:service interface="com.weituitu.ac.api.AcService" registry="my_registry" ref="acService"
+-                   filter="opentracing" export="${motan.server.port}" basicService="serviceBasicConfig">
++                   filter="zipkinfilter" export="${motan.server.port}" basicService="serviceBasicConfig">
+     </motan:service>
+ 
+-
+-    <!-- replace tracer implementation -->
+-    <bean id="myOpenTracingFactory" class="com.weituitu.zipkin.tracer.MyTracerFactory">
+-        <constructor-arg value="ac-server"/>
+-    </bean>
+-    <bean id="opentracingContext" class="com.weibo.api.motan.filter.opentracing.OpenTracingContext">
+-        <property name="tracerFactory" ref="myOpenTracingFactory"/>
+-    </bean>
+-
+ </beans>
+\ No newline at end of file
+Index: id-server/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- id-server/pom.xml	(date 1503654347000)
++++ id-server/pom.xml	(date 1503989263000)
+@@ -77,12 +77,13 @@
+             <artifactId>apollo-client</artifactId>
+         </dependency>
+ 
++
+         <dependency>
+-            <groupId>com.weituitu</groupId>
+-            <artifactId>zipkin-tracer</artifactId>
+-            <version>1.0-SNAPSHOT</version>
++            <groupId>com.weibo</groupId>
++            <artifactId>zipkin-extension</artifactId>
+         </dependency>
+ 
++
+         <dependency>
+             <groupId>com.weituitu</groupId>
+             <artifactId>id-api</artifactId>
+Index: id-server/src/main/java/com/weituitu/id/service/IdserviceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- id-server/src/main/java/com/weituitu/id/service/IdserviceImpl.java	(date 1503654347000)
++++ id-server/src/main/java/com/weituitu/id/service/IdserviceImpl.java	(date 1503989263000)
+@@ -1,14 +1,10 @@
+ package com.weituitu.id.service;
+ 
+-import com.weibo.api.motan.config.springsupport.annotation.MotanReferer;
+ import com.weituitu.ac.api.AcService;
+ import com.weituitu.core.exception.ServiceException;
+ import com.weituitu.id.api.IdService;
+ import org.springframework.beans.factory.annotation.Autowired;
+ 
+-import java.util.Date;
+-import java.util.Random;
+-
+ /**
+  * @描述:
+  * @作者:liuguozhu
+Index: id-server/src/main/resources/motan_server.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- id-server/src/main/resources/motan_server.xml	(date 1503654347000)
++++ id-server/src/main/resources/motan_server.xml	(date 1503989263000)
+@@ -11,7 +11,7 @@
+     <apollo:config namespaces="back-end.motan"/>
+ 
+ 
+-    <context:component-scan base-package="com.weituitu.id"/>
++    <context:component-scan base-package="com.weituitu"/>
+ 
+     <motan:registry regProtocol="${motan.regProtocol}" name="my_registry"
+                     address="${motan.regAddress}"/>
+@@ -40,14 +40,7 @@
+     <bean id="idService" class="com.weituitu.id.service.IdserviceImpl"/>
+     <!-- exporting service by Motan -->
+     <motan:service interface="com.weituitu.id.api.IdService" registry="my_registry" ref="idService"
+-                   filter="opentracing" export="${motan.server.port}"/>
++                   filter="zipkinfilter" export="${motan.server.port}"/>
+ 
+-    <!-- replace tracer implementation -->
+-    <bean id="myOpenTracingFactory" class="com.weituitu.zipkin.tracer.MyTracerFactory">
+-        <constructor-arg value="id-server"/>
+-    </bean>
+-    <bean id="opentracingContext" class="com.weibo.api.motan.filter.opentracing.OpenTracingContext">
+-        <property name="tracerFactory" ref="myOpenTracingFactory"/>
+-    </bean>
+ 
+ </beans>
+\ No newline at end of file
+Index: platform-web-parent/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platform-web-parent/pom.xml	(date 1503654347000)
++++ platform-web-parent/pom.xml	(date 1503989263000)
+@@ -43,17 +43,12 @@
+             <artifactId>apollo-client</artifactId>
+         </dependency>
+ 
+-        <!--springcloud zipkin扩展-->
+         <dependency>
+-            <groupId>org.springframework.cloud</groupId>
+-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+-        </dependency>
+-
+-        <dependency>
+-            <groupId>org.springframework.cloud</groupId>
+-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
++            <groupId>com.weibo</groupId>
++            <artifactId>zipkin-extension</artifactId>
+         </dependency>
+ 
++
+     </dependencies>
+ 
+     <build>
+Index: platform-web-parent/task-treasure-web/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platform-web-parent/task-treasure-web/pom.xml	(date 1503654347000)
++++ platform-web-parent/task-treasure-web/pom.xml	(date 1503989263000)
+@@ -76,23 +76,18 @@
+             <artifactId>apollo-client</artifactId>
+         </dependency>
+ 
+-
+         <dependency>
+-            <groupId>org.springframework.cloud</groupId>
+-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+-        </dependency>
+-
+-        <dependency>
+-            <groupId>org.springframework.cloud</groupId>
+-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
++            <groupId>com.weibo</groupId>
++            <artifactId>zipkin-extension</artifactId>
+         </dependency>
+ 
+         <dependency>
+             <groupId>com.weituitu</groupId>
+-            <artifactId>motan-zipkin-extension</artifactId>
++            <artifactId>sleuth-motan-extension</artifactId>
+             <version>1.0-SNAPSHOT</version>
+         </dependency>
+ 
++
+         <dependency>
+             <groupId>com.weituitu</groupId>
+             <artifactId>id-api</artifactId>
+Index: platform-web-parent/task-treasure-web/src/main/java/com/weituitu/task/treasure/Application.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platform-web-parent/task-treasure-web/src/main/java/com/weituitu/task/treasure/Application.java	(date 1503654347000)
++++ platform-web-parent/task-treasure-web/src/main/java/com/weituitu/task/treasure/Application.java	(date 1503989263000)
+@@ -23,15 +23,7 @@
+ public class Application implements ServletContextInitializer {
+ 
+     public static void main(String[] args) {
+-        ApplicationContext ctx = SpringApplication.run(Application.class, args);
+-        String[] beanNames = ctx.getBeanDefinitionNames();
+-        for (String temp : beanNames) {
+-            if (temp.contains("tracer")) {
+-                System.out.println();
+-            }
+-
+-        }
+-        System.out.println(beanNames);
++        SpringApplication.run(Application.class, args);
+     }
+ 
+     /**
+Index: platform-web-parent/task-treasure-web/src/main/java/com/weituitu/task/treasure/conf/AppConfig.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platform-web-parent/task-treasure-web/src/main/java/com/weituitu/task/treasure/conf/AppConfig.java	(date 1503654347000)
++++ platform-web-parent/task-treasure-web/src/main/java/com/weituitu/task/treasure/conf/AppConfig.java	(date 1503989263000)
+@@ -1,6 +1,7 @@
+ package com.weituitu.task.treasure.conf;
+ 
+ import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
++import com.github.kristofa.brave.Brave;
+ import com.weibo.api.motan.config.springsupport.AnnotationBean;
+ import com.weibo.api.motan.config.springsupport.BasicRefererConfigBean;
+ import com.weibo.api.motan.config.springsupport.ProtocolConfigBean;
+@@ -8,6 +9,8 @@
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.context.annotation.Bean;
+ import org.springframework.context.annotation.Configuration;
++import zipkin.reporter.AsyncReporter;
++import zipkin.reporter.okhttp3.OkHttpSender;
+ 
+ /**
+  * @描述:
+@@ -39,6 +42,33 @@
+     }
+ 
+ 
++    @Bean
++    public ZipkinConfig zipkinConfig() {
++        return new ZipkinConfig();
++    }
++
++
++    public static final String BRAVE_ZIPKIN_BEAN_NAME = "spring-boot-brave-of-zipkin";
++
++    @Bean(name = BRAVE_ZIPKIN_BEAN_NAME)
++    public Brave brave(ZipkinConfig zipkinConfig) {
++        System.out.println("读取配置文件:" + zipkinConfig.toString());
++        Brave.Builder builder = new Brave.Builder(zipkinConfig.getApplication())
++                .reporter(
++                        AsyncReporter
++                                .builder(
++                                        // okhttp3
++                                        OkHttpSender.builder().endpoint("http://" + zipkinConfig.getHost() + ":9411/api/v1/spans").compressionEnabled(true).build()
++                                )
++                                .build()
++                );
++        Brave brave = builder.build();
++        System.out.println("初始化 Brave : " + brave);
++
++        return brave;
++    }
++
++
+     /**
+      * 设置motan协议
+      *
+@@ -83,7 +113,7 @@
+         config.setRetries(motanConfig.getRetries());
+         config.setThrowException(motanConfig.getThrowException());
+         config.setRequestTimeout(motanConfig.getRequestTimeout());
+-        config.setFilter("opentracing");
++        config.setFilter("zipkinfilter");
+         return config;
+     }
+ }
+Index: platform-web-parent/task-treasure-web/src/main/java/com/weituitu/task/treasure/web/LoginController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- platform-web-parent/task-treasure-web/src/main/java/com/weituitu/task/treasure/web/LoginController.java	(date 1503654347000)
++++ platform-web-parent/task-treasure-web/src/main/java/com/weituitu/task/treasure/web/LoginController.java	(date 1503989263000)
+@@ -37,7 +37,6 @@
+     AcService acService;
+ 
+ 
+-
+     /**
+      * 用户登录
+      *
+@@ -67,7 +66,7 @@
+                 + ".TRACE";
+ 
+         Span span = (Span) request.getAttribute(TRACE_REQUEST_ATTR);
+-        System.out.println(span);
++        //System.out.println(span);
+ 
+ 
+         idService.nextId();
+Index: platform-web-parent/task-treasure-web/src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>NATIVE_TO_ASCII_UTF-8
+===================================================================
+--- platform-web-parent/task-treasure-web/src/main/resources/application.properties	(date 1503654347000)
++++ platform-web-parent/task-treasure-web/src/main/resources/application.properties	(date 1503989263000)
+@@ -8,7 +8,6 @@
+ logging.config=classpath:logback-spring.xml
+ #项目名称
+ spring.application.name=task-treasure-web
+-#汇报数据地址
+-spring.zipkin.base-url=http://127.0.0.1:9411
+-#收集数据汇报比例
+-spring.sleuth.sampler.percentage=1
++
++
++
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- pom.xml	(date 1503654347000)
++++ pom.xml	(date 1503989263000)
+@@ -17,9 +17,8 @@
+         <module>id-server</module>
+         <module>platform-core</module>
+         <module>platform-web-parent</module>
+-        <module>zipkin-tracer</module>
+         <module>zipkin-server</module>
+-        <module>motan-zipkin-extension</module>
++        <module>sleuth-motan-extension</module>
+     </modules>
+     <packaging>pom</packaging>
+ 
+@@ -163,21 +162,7 @@
+                 </exclusions>
+             </dependency>
+ 
+-            <dependency>
+-                <groupId>com.weibo</groupId>
+-                <artifactId>filter-opentracing</artifactId>
+-                <version>0.3.1</version>
+-                <exclusions>
+-                    <exclusion>
+-                        <groupId>org.slf4j</groupId>
+-                        <artifactId>slf4j-log4j12</artifactId>
+-                    </exclusion>
+-                    <exclusion>
+-                        <groupId>log4j</groupId>
+-                        <artifactId>log4j</artifactId>
+-                    </exclusion>
+-                </exclusions>
+-            </dependency>
++
+ 
+ 
+             <dependency>
+@@ -253,6 +238,13 @@
+                 <artifactId>apollo-client</artifactId>
+                 <version>0.8.0</version>
+             </dependency>
++
++            <dependency>
++                <groupId>com.weibo</groupId>
++                <artifactId>zipkin-extension</artifactId>
++                <version>0.3.1</version>
++            </dependency>
++
+         </dependencies>
+ 
+ 
+Index: motan-zipkin-extension/pom.xml
+===================================================================
+--- motan-zipkin-extension/pom.xml	(date 1503654347000)
++++ sleuth-motan-extension/pom.xml	(date 1503989263000)
+@@ -9,14 +9,9 @@
+     </parent>
+     <modelVersion>4.0.0</modelVersion>
+ 
+-    <artifactId>motan-zipkin-extension</artifactId>
++    <artifactId>sleuth-motan-extension</artifactId>
+ 
+     <dependencies>
+-        <dependency>
+-            <groupId>com.weibo</groupId>
+-            <artifactId>motan-core</artifactId>
+-        </dependency>
+-
+         <dependency>
+             <groupId>org.springframework.cloud</groupId>
+             <artifactId>spring-cloud-starter-sleuth</artifactId>
+@@ -26,14 +21,10 @@
+             <groupId>org.springframework.cloud</groupId>
+             <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+         </dependency>
++
+         <dependency>
+-            <groupId>org.springframework.boot</groupId>
+-            <artifactId>spring-boot-starter-web</artifactId>
+-        </dependency>
+-
+-        <dependency>
+-            <groupId>org.springframework</groupId>
+-            <artifactId>spring-context</artifactId>
++            <groupId>com.weibo</groupId>
++            <artifactId>motan-core</artifactId>
+         </dependency>
+ 
+     </dependencies>
+Index: motan-zipkin-extension/src/main/java/com/weituitu/zipkin/motan/extension/filter/MotanClientFilter.java
+===================================================================
+--- motan-zipkin-extension/src/main/java/com/weituitu/zipkin/motan/extension/filter/MotanClientFilter.java	(date 1503654347000)
++++ sleuth-motan-extension/src/main/java/com/weituitu/zipkin/motan/extension/filter/MotanClientFilter.java	(date 1503989263000)
+@@ -10,13 +10,12 @@
+ import org.springframework.cloud.sleuth.trace.DefaultTracer;
+ 
+ /**
+- * @描述: motan zipkin客户端扩展,该类主要是想利用springcloud封装的一套接口带来的便利，继续使用它。
+- * TODO  异步处理获得当前的request参数方法用InheritableThreadLocal，后期支持扩展异步处理获得tracer
++ * @描述:
+  * @作者:liuguozhu
+  * @创建:2017/8/25-上午11:54
+  * @版本:v1.0
+  */
+-@SpiMeta(name = "clientopentracing")
++@SpiMeta(name = "sleuthfilter")
+ @Activation(sequence = 10)
+ public class MotanClientFilter implements Filter {
+ 
+@@ -30,15 +29,14 @@
+         if (null != tracer) {
+             Span span = tracer.getCurrentSpan();
+             if (null != span) {
+-                long traceId = span.getTraceId();
+-                long spanId = span.getSpanId();
+-                String spanName = span.getName();
+                 System.out.println(span);
+-                request.getAttachments().put(OpentracingMotankeys.SAMPLED, "1");
+-                request.getAttachments().put(OpentracingMotankeys.TRACEID, String.valueOf(traceId));
+-                request.getAttachments().put(OpentracingMotankeys.SPANID, String.valueOf(spanId));
+-                request.getAttachments().put(OpentracingMotankeys.SPANID, getParentIdIfPresent(span));
+-
++                request.getAttachments().put(Span.TRACE_ID_NAME, Span.idToHex(span.getTraceId()));
++                request.getAttachments().put(Span.SPAN_NAME_NAME, span.getName());
++                request.getAttachments().put(Span.SPAN_ID_NAME, Span.idToHex(span.getSpanId()));
++                request.getAttachments().put(Span.SAMPLED_NAME, span.isExportable() ?
++                        Span.SPAN_SAMPLED : Span.SPAN_NOT_SAMPLED);
++                request.getAttachments().put(Span.PARENT_ID_NAME, getParentIdIfPresent(span));
++                System.out.println("sleuth filter traceId=" + Span.idToHex(span.getTraceId()));
+             }
+             return caller.call(request);
+         }
+Index: motan-zipkin-extension/src/main/java/com/weituitu/zipkin/motan/extension/filter/TracerContextAware.java
+===================================================================
+--- motan-zipkin-extension/src/main/java/com/weituitu/zipkin/motan/extension/filter/TracerContextAware.java	(date 1503654347000)
++++ sleuth-motan-extension/src/main/java/com/weituitu/zipkin/motan/extension/filter/TracerContextAware.java	(date 1503989263000)
+@@ -1,0 +1,0 @@
+Index: motan-zipkin-extension/src/main/java/com/weituitu/zipkin/motan/extension/filter/OpenTracingMotanHeaders.java
+===================================================================
+--- motan-zipkin-extension/src/main/java/com/weituitu/zipkin/motan/extension/filter/OpenTracingMotanHeaders.java	(date 1503654347000)
++++ motan-zipkin-extension/src/main/java/com/weituitu/zipkin/motan/extension/filter/OpenTracingMotanHeaders.java	(date 1503654347000)
+@@ -1,43 +0,0 @@
+-package com.weituitu.zipkin.motan.extension.filter;
+-
+-/**
+- * Contains the header keys that are used to represent trace id, span id, parent span id, sampled.
+- * <p/>
+- * The names correspond with the zipkin header values.
+- * <p/>
+- * These can be used to submit as HTTP header in a new request.
+- *
+- * <p>See https://github.com/openzipkin/b3-propagation for details
+- * @author kristof
+- */
+-public enum OpenTracingMotanHeaders {
+-
+-    /**
+-     * 128 or 64-bit trace ID lower-hex encoded into 32 or 16 characters (required)
+-     */
+-    TraceId("X-B3-TraceId"),
+-    /**
+-     * 64-bit span ID lower-hex encoded into 16 characters (required)
+-     */
+-    SpanId("X-B3-SpanId"),
+-    /**
+-     * 64-bit parent span ID lower-hex encoded into 16 characters (absent on root span)
+-     */
+-    ParentSpanId("X-B3-ParentSpanId"),
+-    /**
+-     * "1" means report this span to the tracing system, "0" means do not. (absent means defer the
+-     * decision to the receiver of this header).
+-     */
+-    Sampled("X-B3-Sampled");
+-
+-    private final String name;
+-
+-    OpenTracingMotanHeaders(final String name) {
+-        this.name = name;
+-    }
+-
+-    public String getName() {
+-        return name;
+-    }
+-
+-}
+Index: motan-zipkin-extension/src/main/java/com/weituitu/zipkin/motan/extension/filter/OpentracingMotankeys.java
+===================================================================
+--- motan-zipkin-extension/src/main/java/com/weituitu/zipkin/motan/extension/filter/OpentracingMotankeys.java	(date 1503654347000)
++++ motan-zipkin-extension/src/main/java/com/weituitu/zipkin/motan/extension/filter/OpentracingMotankeys.java	(date 1503654347000)
+@@ -1,19 +0,0 @@
+-package com.weituitu.zipkin.motan.extension.filter;
+-
+-/**
+- * @描述:
+- * @作者:liuguozhu
+- * @创建:2017/8/25-下午5:32
+- * @版本:v1.0
+- */
+-public class OpentracingMotankeys {
+-
+-    public static String PARENTSPANID = OpenTracingMotanHeaders.ParentSpanId.getName();
+-
+-    public static String SPANID = OpenTracingMotanHeaders.SpanId.getName();
+-
+-    public static String TRACEID = OpenTracingMotanHeaders.TraceId.getName();
+-
+-    public static String SAMPLED = OpenTracingMotanHeaders.Sampled.getName();
+-
+-}
+Index: zipkin-tracer/pom.xml
+===================================================================
+--- zipkin-tracer/pom.xml	(date 1503654347000)
++++ zipkin-tracer/pom.xml	(date 1503654347000)
+@@ -1,83 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project xmlns="http://maven.apache.org/POM/4.0.0"
+-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-    <parent>
+-        <artifactId>parent</artifactId>
+-        <groupId>com.weituitu</groupId>
+-        <version>1.0-SNAPSHOT</version>
+-    </parent>
+-    <modelVersion>4.0.0</modelVersion>
+-
+-    <artifactId>zipkin-tracer</artifactId>
+-    <properties>
+-        <opentracing.version>0.20.4</opentracing.version>
+-    </properties>
+-
+-    <dependencies>
+-        <dependency>
+-            <groupId>io.opentracing</groupId>
+-            <artifactId>opentracing-api</artifactId>
+-            <version>${opentracing.version}</version>
+-        </dependency>
+-        <dependency>
+-            <groupId>io.opentracing</groupId>
+-            <artifactId>opentracing-impl</artifactId>
+-            <version>${opentracing.version}</version>
+-        </dependency>
+-
+-
+-        <dependency>
+-            <groupId>io.opentracing</groupId>
+-            <artifactId>opentracing-mock</artifactId>
+-            <version>${opentracing.version}</version>
+-        </dependency>
+-
+-        <dependency>
+-            <groupId>io.opentracing.brave</groupId>
+-            <artifactId>brave-opentracing</artifactId>
+-            <version>0.16.0</version>
+-        </dependency>
+-
+-        <dependency>
+-            <groupId>io.zipkin.brave</groupId>
+-            <artifactId>brave-core</artifactId>
+-            <version>3.9.0</version>
+-        </dependency>
+-
+-        <dependency>
+-            <groupId>io.zipkin.brave</groupId>
+-            <artifactId>brave-http</artifactId>
+-            <version>3.9.0</version>
+-        </dependency>
+-
+-        <dependency>
+-            <groupId>io.zipkin.brave</groupId>
+-            <artifactId>brave-spancollector-http</artifactId>
+-            <version>3.9.0</version>
+-        </dependency>
+-
+-        <dependency>
+-            <groupId>io.zipkin.brave</groupId>
+-            <artifactId>brave-web-servlet-filter</artifactId>
+-            <version>3.9.0</version>
+-        </dependency>
+-
+-        <dependency>
+-            <groupId>io.zipkin.brave</groupId>
+-            <artifactId>brave-okhttp</artifactId>
+-            <version>3.9.0</version>
+-        </dependency>
+-
+-        <dependency>
+-            <groupId>com.ning</groupId>
+-            <artifactId>async-http-client</artifactId>
+-            <version>1.9.31</version>
+-        </dependency>
+-        <dependency>
+-            <groupId>com.weibo</groupId>
+-            <artifactId>filter-opentracing</artifactId>
+-        </dependency>
+-    </dependencies>
+-
+-</project>
+\ No newline at end of file
+Index: zipkin-tracer/src/main/java/com/weituitu/zipkin/tracer/MyTracerFactory.java
+===================================================================
+--- zipkin-tracer/src/main/java/com/weituitu/zipkin/tracer/MyTracerFactory.java	(date 1503654347000)
++++ zipkin-tracer/src/main/java/com/weituitu/zipkin/tracer/MyTracerFactory.java	(date 1503654347000)
+@@ -1,45 +0,0 @@
+-package com.weituitu.zipkin.tracer;
+-
+-
+-import com.github.kristofa.brave.Brave;
+-import com.github.kristofa.brave.EmptySpanCollectorMetricsHandler;
+-import com.github.kristofa.brave.http.DefaultSpanNameProvider;
+-import com.github.kristofa.brave.http.HttpSpanCollector;
+-import com.github.kristofa.brave.servlet.BraveServletFilter;
+-import com.weibo.api.motan.filter.opentracing.TracerFactory;
+-import io.opentracing.Tracer;
+-import io.opentracing.impl.BraveTracer;
+-
+-/**
+- * @描述:
+- * @作者:liuguozhu
+- * @创建:2017/8/21-上午10:30
+- * @版本:v1.0
+- */
+-
+-
+-public class MyTracerFactory implements TracerFactory {
+-
+-    private String serviceName;
+-
+-    HttpSpanCollector.Config spanConfig = HttpSpanCollector.Config.builder().compressionEnabled(false)//默认false，span在transport之前是否会被gzipped。
+-            .connectTimeout(5000)//5s，默认10s
+-            .flushInterval(1)//1s
+-            .readTimeout(6000)//5s，默认60s
+-            .build();
+-
+-    public MyTracerFactory(String serviceName) {
+-        this.serviceName = serviceName;
+-    }
+-
+-
+-    @Override
+-    public Tracer getTracer() {
+-        final Tracer braveTracer = new BraveTracer((new Brave.Builder(serviceName))
+-                .spanCollector(HttpSpanCollector
+-                        .create("http://127.0.0.1:9411", spanConfig, new EmptySpanCollectorMetricsHandler())));
+-
+-        return braveTracer;
+-    }
+-
+-}
+diff --git motan-zipkin-extension/src/main/resources/META-INF/services/com.weibo.api.motan.filter.Filter sleuth-motan-extension/src/main/resources/META-INF/services/com.weibo.api.motan.filter.Filter
+index d0b8890d795d1fbbdab95e26d835e8f561cede15..d0b8890d795d1fbbdab95e26d835e8f561cede15
+GIT binary patch
+literal 673
+zc${UDO^=%}5Qgvh6{F<RO01LSP^s;S&1O~9Es;XD(H;#9WVB$r_E3`k`VN6eyDGAT
+zJRh&0ckIP%0kE;|;;B9{tXHcqck9)s&u~P_Z3Kxa)NC;n0X$KGCSVDjDbWL;5Mrkb
+z`AwM!exVO!4Xo7)J`4r(DK-E2Z4|lK4qANyV;Q=DqCx>GY7p>Tpkp8dg>79!+7t*q
+z@#%Wfq@zZamr2FutffIqi<4dTwiGnq$cOL5?7l9Secvm6rB>G0%Vw+%%co?sO|$Kt
+zkl(tVO@kqT$KM@!v7KK)I{_<nF1U^E!FtfON6E1rz<W<jrj8)kihJ#G6e=mOr@Z5L
+zv%6u6|F;D)J#AnfXOLubxR0|Wi$<Aaa`?V`KEN^F@8k54Y%|#HVY5pgl0&jfW%mei
+z`T{?a^dSP2$;nB0c7AXns5DF!%V~re;yaAWj#$BAK@}BZ(A1r-5o-Gfy%AsF(6<zZ
+z8x8_ljzSH!#G0?c|J)6aXD0Wldg1A0slVi2$*9({HVV%yRnn^D2{3x~a|mw))9~Xp
+F@()gY+cy9J
+

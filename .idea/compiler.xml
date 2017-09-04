@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ac-api" />
+        <module name="ac-server" />
+        <module name="email-api" />
+        <module name="email-server" />
+        <module name="id-api" />
+        <module name="id-server" />
+        <module name="message-api" />
+        <module name="message-server" />
+        <module name="platform-core" />
+        <module name="sms-api" />
+        <module name="task-treasure-web" />
+        <module name="wechat" />
+        <module name="weituitu-web" />
+        <module name="zipkin-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ac-api" target="1.8" />
+      <module name="ac-server" target="1.8" />
+      <module name="aliyun-oss-api" target="1.5" />
+      <module name="aliyun-oss-server" target="1.5" />
+      <module name="aliyun-rocketmq-api" target="1.5" />
+      <module name="aliyun-rocketmq-server" target="1.5" />
+      <module name="billing-api" target="1.5" />
+      <module name="billing-server" target="1.5" />
+      <module name="email-api" target="1.8" />
+      <module name="email-server" target="1.8" />
+      <module name="id-api" target="1.8" />
+      <module name="id-server" target="1.8" />
+      <module name="jaeger-tracer" target="1.8" />
+      <module name="message-api" target="1.8" />
+      <module name="message-server" target="1.8" />
+      <module name="motan-zipkin-extension" target="1.8" />
+      <module name="parent" target="1.8" />
+      <module name="pay-alipay" target="1.5" />
+      <module name="pay-wechat" target="1.5" />
+      <module name="platform-core" target="1.8" />
+      <module name="platform-rwb-web" target="1.8" />
+      <module name="platform-web" target="1.8" />
+      <module name="platform-web-parent" target="1.8" />
+      <module name="sleuth-motan-extension" target="1.8" />
+      <module name="sms-api" target="1.8" />
+      <module name="sms-server" target="1.8" />
+      <module name="task-treasure-web" target="1.8" />
+      <module name="tgb-web" target="1.5" />
+      <module name="wechat" target="1.8" />
+      <module name="weituitu-web" target="1.8" />
+      <module name="zipkin-server" target="1.8" />
+      <module name="zipkin-tracer" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/aliyun-oss-api/pom.xml" />
+        <option value="$PROJECT_DIR$/aliyun-oss-server/pom.xml" />
+        <option value="$PROJECT_DIR$/aliyun-rocketmq-api/pom.xml" />
+        <option value="$PROJECT_DIR$/aliyun-rocketmq-server/pom.xml" />
+        <option value="$PROJECT_DIR$/billing-api/pom.xml" />
+        <option value="$PROJECT_DIR$/billing-server/pom.xml" />
+        <option value="$PROJECT_DIR$/jaeger-tracer/pom.xml" />
+        <option value="$PROJECT_DIR$/motan-zipkin-extension/pom.xml" />
+        <option value="$PROJECT_DIR$/pay-alipay/pom.xml" />
+        <option value="$PROJECT_DIR$/pay-wechat/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-rwb-web/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-web/pom.xml" />
+        <option value="$PROJECT_DIR$/platform-web/task-treasure-web/pom.xml" />
+        <option value="$PROJECT_DIR$/sleuth-motan-extension/pom.xml" />
+        <option value="$PROJECT_DIR$/tgb-web/pom.xml" />
+        <option value="$PROJECT_DIR$/zipkin-tracer/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/classes" />
+  </component>
+</project>
