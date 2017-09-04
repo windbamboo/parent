@@ -33,15 +33,16 @@
 
     <motan:basicService accessLog="true" shareChannel="true" registry="my_registry" id="serviceBasicConfig"/>
 
-    <motan:referer id="messageService" filter="zipkinfilter" interface="com.weituitu.message.api.MessageService"
-                   basicReferer="motantestClientBasicConfig"/>
+    <motan:referer id="messageService" interface="com.weituitu.message.api.MessageService"
+                 basicReferer="motantestClientBasicConfig"/>
 
 
     <!-- service implemention bean -->
     <bean id="acService" class="com.weituitu.ac.service.AcServiceImpl"/>
     <!-- exporting service by Motan -->
     <motan:service interface="com.weituitu.ac.api.AcService" registry="my_registry" ref="acService"
-                   filter="zipkinfilter" export="${motan.server.port}" basicService="serviceBasicConfig">
+                   requestTimeout="30000" filter="zipkinfilter" export="${motan.server.port}"
+                   basicService="serviceBasicConfig">
     </motan:service>
 
 </beans>

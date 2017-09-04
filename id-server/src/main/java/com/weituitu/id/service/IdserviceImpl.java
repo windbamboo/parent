@@ -22,6 +22,7 @@ public class IdserviceImpl implements IdService {
 
     public String nextId() throws ServiceException {
         emailService.sendEmail();
+        System.out.println("acService===" + acService);
         return acService.getName();
 
     }

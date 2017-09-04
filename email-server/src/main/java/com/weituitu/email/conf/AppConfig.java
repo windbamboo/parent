@@ -1,10 +1,17 @@
 package com.weituitu.email.conf;
 
+import brave.Tracing;
+import brave.context.log4j2.ThreadContextCurrentTraceContext;
+import brave.http.HttpTracing;
 import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import com.github.kristofa.brave.Brave;
+import com.weituitu.motan.filter.MotanZipkinFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import zipkin.Span;
 import zipkin.reporter.AsyncReporter;
+import zipkin.reporter.Reporter;
+import zipkin.reporter.Sender;
 import zipkin.reporter.okhttp3.OkHttpSender;
 
 /**
@@ -22,24 +29,37 @@ public class AppConfig {
     }
 
 
-    public static final String BRAVE_ZIPKIN_BEAN_NAME = "spring-boot-brave-of-zipkin";
+    /**
+     * Configuration for how to send spans to Zipkin
+     */
+    @Bean
+    Sender sender() {
+        return OkHttpSender.create("http://127.0.0.1:9411/api/v1/spans");
+    }
 
-    @Bean(name = BRAVE_ZIPKIN_BEAN_NAME)
-    public Brave brave(ZipkinConfig zipkinConfig) {
-        System.out.println("读取配置文件:" + zipkinConfig.toString());
-        Brave.Builder builder = new Brave.Builder(zipkinConfig.getApplication())
-                .reporter(
-                        AsyncReporter
-                                .builder(
-                                        // okhttp3
-                                        OkHttpSender.builder().endpoint("http://" + zipkinConfig.getHost() + ":9411/api/v1/spans").compressionEnabled(true).build()
-                                )
-                                .build()
-                );
-        Brave brave = builder.build();
-        System.out.println("初始化 Brave : " + brave);
+    /**
+     * Configuration for how to buffer spans into messages for Zipkin
+     */
+    @Bean
+    Reporter<Span> reporter() {
+        return AsyncReporter.builder(sender()).build();
+    }
 
-        return brave;
+    /**
+     * Controls aspects of tracing such as the name that shows up in the UI
+     */
+    @Bean(name = MotanZipkinFilter.ZIPKIN_TRACING_BEAN_NAME)
+    Tracing tracing() {
+        return Tracing.newBuilder()
+                .localServiceName(zipkinConfig().getApplication())
+                .currentTraceContext(ThreadContextCurrentTraceContext.create()) // puts trace IDs into logs
+                .reporter(reporter()).build();
+    }
+
+    // decides how to name and tag spans. By default they are named the same as the http method.
+    @Bean
+    HttpTracing httpTracing() {
+        return HttpTracing.create(tracing());
     }
 
 }

@@ -40,25 +40,6 @@ public class Application implements ServletContextInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         servletContext.addListener(new ShutDownHookListener());
-        Brave.Builder builder = new Brave.Builder("web")
-                .reporter(
-                        AsyncReporter
-                                .builder(
-                                        // okhttp3
-                                        OkHttpSender.builder().endpoint("http://" + "127.0.0.1" + ":9411/api/v1/spans").compressionEnabled(true).build()
-                                )
-                                .build()
-                );
-        Brave brave = builder.build();
-        try {
-            servletContext.addFilter("BraveServletFilter", BraveServletFilter.create(brave))
-                    .addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), true, "/*");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("#############" + e);
-        }
-
-
     }
 
     @Bean
